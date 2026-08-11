@@ -21,3 +21,16 @@ select nome,SUM(preco) as Total from Pessoa join Servico on Pessoa.id = Servico.
 /* consultas 2 */
 
 select nome,SUM(preco) as Total from Pessoa left join Servico on Pessoa.id = Servico.id_Pessoa group by Pessoa.nome;
+
+/*consulta 3 - quantidade de serviços que cada pessoa */
+
+select nome,count(Servico.preco) as QuantidadeDeServico from Pessoa join Servico on Pessoa.id = Servico.id_Pessoa Group by Pessoa.nome;
+
+/* consulta 4 - quantidade de serviços que cada pessoa,incluindo nulos ordenado pelos nomes em ordem ascendente*/
+
+select nome,count(Servico.preco) as QuantidadeTotalDeServico from Pessoa left join Servico on Pessoa.id = Servico.id_pessoa group by Pessoa.nome order by Pessoa.nome ASC ;
+
+
+/* consulta 5 - os 2 maiores prestadores de serviço,usando o limit para limitar a quantidade de linhas que aparecem*/
+
+select nome,count(Servico.preco) as QuantidadeTotalDeServico from Pessoa left join Servico on Pessoa.id = Servico.id_pessoa group by Pessoa.nome order by count(Servico.preco) desc limit 2 ;
